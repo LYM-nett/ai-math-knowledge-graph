@@ -1,0 +1,72 @@
+[
+  {
+    "topic": "元素级运算",
+    "subtopic": "基本定义",
+    "definition": "对张量（标量、向量、矩阵）的每个元素独立地施加同一运算，输出张量与输入张量形状相同",
+    "formula": "C = op(A), c_ij = op(a_ij)",
+    "prerequisite": ["张量", "矩阵", "向量", "标量"],
+    "applications": ["激活函数逐元素施加", "图像像素级处理"],
+    "related_algorithms": ["前向传播", "反向传播"],
+    "next_topics": ["激活函数", "矩阵逐元素加法与数乘", "Hadamard乘积"]
+  },
+  {
+    "topic": "sigmoid激活函数",
+    "subtopic": "激活函数",
+    "definition": "将任意实数压缩到开区间 (0,1) 的单调递增饱和函数",
+    "formula": "sigmoid(x) = 1 / (1 + e^{-x})",
+    "prerequisite": ["元素级运算", "指数函数"],
+    "applications": ["二分类输出层", "概率输出"],
+    "related_algorithms": ["逻辑回归", "早期RNN"],
+    "next_topics": ["梯度消失问题", "tanh激活函数", "交叉熵损失"]
+  },
+  {
+    "topic": "tanh激活函数",
+    "subtopic": "激活函数",
+    "definition": "将任意实数压缩到开区间 (-1,1)，输出以0为中心的双曲正切函数",
+    "formula": "tanh(x) = (e^x - e^{-x}) / (e^x + e^{-x})",
+    "prerequisite": ["元素级运算", "指数函数", "sigmoid激活函数"],
+    "applications": ["RNN隐藏层", "零中心化输出场景"],
+    "related_algorithms": ["LSTM", "GRU"],
+    "next_topics": ["梯度消失问题", "ReLU激活函数"]
+  },
+  {
+    "topic": "ReLU激活函数",
+    "subtopic": "激活函数",
+    "definition": "对输入取与0的最大值，负半轴输出恒为0，正半轴梯度恒为1",
+    "formula": "ReLU(x) = max{0, x}",
+    "prerequisite": ["元素级运算"],
+    "applications": ["深度神经网络隐藏层（最常用）"],
+    "related_algorithms": ["CNN", "全连接网络", "ResNet"],
+    "next_topics": ["死亡神经元问题", "Leaky ReLU激活函数", "梯度消失问题"]
+  },
+  {
+    "topic": "Leaky ReLU激活函数",
+    "subtopic": "激活函数",
+    "definition": "ReLU的变体，在负半轴保留斜率 α（小正常数），避免神经元永久失活",
+    "formula": "LeakyReLU(x) = max{αx, x}, α ∈ (0,1), 典型值 α=0.01",
+    "prerequisite": ["ReLU激活函数", "元素级运算"],
+    "applications": ["需要缓解死亡神经元的深度网络"],
+    "related_algorithms": ["PReLU", "ELU"],
+    "next_topics": ["激活函数选择策略", "批归一化"]
+  },
+  {
+    "topic": "矩阵逐元素加法与数乘",
+    "subtopic": "元素级运算",
+    "definition": "同形矩阵对应位置相加；矩阵每个元素与标量相乘",
+    "formula": "C = A + B, c_ij = a_ij + b_ij;  (kA)_ij = k·a_ij",
+    "prerequisite": ["元素级运算", "矩阵", "标量"],
+    "applications": ["图像平滑融合", "彩色图像转灰度: Gray = 0.299R + 0.587G + 0.114B", "残差连接"],
+    "related_algorithms": ["图像混合", "Skip Connection"],
+    "next_topics": ["Hadamard乘积", "矩阵级运算", "广播机制"]
+  },
+  {
+    "topic": "Hadamard乘积",
+    "subtopic": "元素级运算",
+    "definition": "同形矩阵对应位置相乘，结果矩阵形状不变",
+    "formula": "C = A ⊙ B ∈ ℝ^{m×n}, c_ij = a_ij · b_ij",
+    "prerequisite": ["元素级运算", "矩阵", "矩阵逐元素加法与数乘"],
+    "applications": ["图像掩码抠图 (A ⊙ M, M 为0-1掩码矩阵)", "注意力机制门控", "LSTM门控单元"],
+    "related_algorithms": ["图像分割掩码", "LSTM", "注意力机制"],
+    "next_topics": ["矩阵乘法", "卷积运算", "注意力机制"]
+  }
+]

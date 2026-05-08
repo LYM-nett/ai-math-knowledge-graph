@@ -1,0 +1,62 @@
+[
+  {
+    "topic": "连续卷积",
+    "subtopic": "卷积运算",
+    "definition": "输入信号 f(t) 与核函数 g(t) 的积分运算：将 g 翻转后沿 t 轴滑动，在每个位置计算与 f 的乘积积分",
+    "formula": "(f * g)(t) = ∫_{-∞}^{+∞} f(τ) g(t − τ) dτ",
+    "prerequisite": ["函数", "积分", "核函数"],
+    "applications": ["系统响应建模", "信号滤波"],
+    "related_algorithms": ["傅里叶变换", "拉普拉斯变换"],
+    "next_topics": ["一维离散卷积", "卷积定理"]
+  },
+  {
+    "topic": "一维离散卷积",
+    "subtopic": "卷积运算",
+    "definition": "输入向量 f ∈ ℝ^M 与卷积核 w ∈ ℝ^K 的滑动加权求和，输出长度为 M−K+1（无补边时）；深度学习中省略核翻转步骤",
+    "formula": "y_i = Σ_{m=1}^{K} f_{i+m-1} · w_m,  y ∈ ℝ^{M−K+1}",
+    "prerequisite": ["连续卷积", "向量", "内积"],
+    "applications": ["时序信号平滑滤波", "趋势提取"],
+    "related_algorithms": ["滑动平均", "FIR滤波器"],
+    "next_topics": ["补充边界策略", "二维离散卷积"]
+  },
+  {
+    "topic": "补充边界策略",
+    "subtopic": "一维离散卷积",
+    "definition": "对输入向量两端补充元素，以控制输出长度并均衡边缘利用率；四种方式：零边界、复制边界、镜像边界、循环边界",
+    "formula": "补零后输出长度 = M − K + 1 + 2P（P 为单侧补充量）",
+    "prerequisite": ["一维离散卷积"],
+    "applications": ["零边界: CNN卷积层（最常用）", "镜像边界: 图像处理", "循环边界: 频域卷积"],
+    "related_algorithms": ["padding='same'", "padding='valid'"],
+    "next_topics": ["二维离散卷积", "步长与感受野"]
+  },
+  {
+    "topic": "二维离散卷积",
+    "subtopic": "卷积运算",
+    "definition": "输入矩阵 F ∈ ℝ^{H×W} 与卷积核 w ∈ ℝ^{K×K} 的二维滑动加权求和；每步对局部 K×K 区域做 Hadamard 乘积再求和",
+    "formula": "y_{ij} = Σ_{m=1}^{K} Σ_{n=1}^{K} f_{i+m−1, j+n−1} · w_{mn},  Y ∈ ℝ^{(H−K+1)×(W−K+1)}",
+    "prerequisite": ["一维离散卷积", "矩阵", "Hadamard乘积"],
+    "applications": ["图像特征提取", "边缘检测（Sobel核）", "CNN卷积层"],
+    "related_algorithms": ["im2col", "FFT加速卷积"],
+    "next_topics": ["Sobel边缘检测", "深度卷积神经网络", "步长/扩张卷积"]
+  },
+  {
+    "topic": "Sobel卷积核",
+    "subtopic": "二维离散卷积应用",
+    "definition": "手工设计的 3×3 卷积核，分别近似图像在水平和垂直方向的一阶梯度，用于边缘检测",
+    "formula": "w_垂直 = [[-1,0,1],[-2,0,2],[-1,0,1]],  w_水平 = [[-1,-2,-1],[0,0,0],[1,2,1]]",
+    "prerequisite": ["二维离散卷积", "图像梯度"],
+    "applications": ["图像边缘检测", "目标轮廓提取"],
+    "related_algorithms": ["Canny边缘检测", "Laplacian算子", "Prewitt算子"],
+    "next_topics": ["深度卷积神经网络（可学习卷积核）"]
+  },
+  {
+    "topic": "深度卷积神经网络",
+    "subtopic": "二维离散卷积应用",
+    "definition": "多层可学习卷积核与非线性激活函数交替堆叠，形成层级化特征表示：浅层→边缘/纹理，中层→部件，高层→语义概念；核参数通过数据驱动训练得到",
+    "formula": "a^{l+1} = σ(a^l * W^l + b^l)",
+    "prerequisite": ["二维离散卷积", "激活函数", "反向传播", "权值共享"],
+    "applications": ["图像分类", "目标检测", "语义分割", "自然语言处理（1D-CNN）"],
+    "related_algorithms": ["LeNet", "VGG", "ResNet", "反向传播"],
+    "next_topics": ["池化操作", "批归一化", "残差连接", "感受野"]
+  }
+]

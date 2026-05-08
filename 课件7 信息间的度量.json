@@ -1,0 +1,112 @@
+[
+  {
+    "topic": "距离度量",
+    "subtopic": "数据相似性度量",
+    "definition": "满足非负性、对称性和三角不等式的空间映射函数，用于量化空间中数据点之间的绝对距离差异。",
+    "formula": "d(x,y) \\ge 0, d(x,y)=d(y,x), d(x,z) \\le d(x,y)+d(y,z)",
+    "prerequisite": ["向量空间", "范数"],
+    "applications": ["分类系统核心工具", "聚类分析", "回归分析", "推荐系统"],
+    "related_algorithms": [],
+    "next_topics": ["Euclid距离", "Manhattan距离", "Chebyshev距离", "Mahalanobis距离"]
+  },
+  {
+    "topic": "Euclid距离",
+    "subtopic": "距离度量",
+    "definition": "对应向量的2范数，衡量多维欧氏空间中两点间的直线距离。",
+    "formula": "d(x,y) = \\sqrt{\\sum_{i=1}^n (x_i - y_i)^2}",
+    "prerequisite": ["距离度量", "L2范数"],
+    "applications": ["各维度量纲一致且数据分布均匀密集场景的距离计算"],
+    "related_algorithms": ["K-Means聚类算法"],
+    "next_topics": ["Manhattan距离"]
+  },
+  {
+    "topic": "Manhattan距离",
+    "subtopic": "距离度量",
+    "definition": "对应向量的1范数，衡量多维空间中各坐标维度绝对差值的累加和。",
+    "formula": "d(x,y) = \\sum_{i=1}^n |x_i - y_i|",
+    "prerequisite": ["距离度量", "L1范数"],
+    "applications": ["网格状数据分析", "存在较多离群点时的距离度量（具有抗异常值鲁棒性）"],
+    "related_algorithms": [],
+    "next_topics": ["Chebyshev距离"]
+  },
+  {
+    "topic": "Chebyshev距离",
+    "subtopic": "距离度量",
+    "definition": "对应向量的无穷范数，取多维空间中各维度坐标差绝对值的最大值。",
+    "formula": "d(x,y) = \\max_{1 \\le i \\le n} |x_i - y_i|",
+    "prerequisite": ["距离度量", "无穷范数"],
+    "applications": ["超高维数据中避免微小误差累加的距离计算", "关键受短板效应或最坏情况决定系统的度量"],
+    "related_algorithms": [],
+    "next_topics": ["Mahalanobis距离"]
+  },
+  {
+    "topic": "Mahalanobis距离",
+    "subtopic": "距离度量",
+    "definition": "引入数据集协方差矩阵的全局距离，对数据进行伸缩变换以剔除变量间相关性与量纲差异的影响。",
+    "formula": "D_M(x) = \\sqrt{(x - \\mu)^T \\Sigma^{-1} (x - \\mu)}",
+    "prerequisite": ["距离度量", "协方差矩阵", "逆矩阵"],
+    "applications": ["特征间存在明显相关性的数据分析", "各特征量纲不统一的复杂数据集度量"],
+    "related_algorithms": [],
+    "next_topics": []
+  },
+  {
+    "topic": "余弦相似度",
+    "subtopic": "方向类度量",
+    "definition": "通过计算多维空间中两个向量夹角的余弦值，忽略向量绝对长度，仅量化方向趋同性。",
+    "formula": "C(x,y) = \\frac{\\langle x, y \\rangle}{\\|x\\|_2 \\|y\\|_2}",
+    "prerequisite": ["向量内积", "L2范数"],
+    "applications": ["自然语言处理词向量语义分析", "文本TF-IDF特征比对", "高维稀疏数据推荐匹配"],
+    "related_algorithms": [],
+    "next_topics": ["皮尔逊相关系数"]
+  },
+  {
+    "topic": "皮尔逊相关系数",
+    "subtopic": "方向类度量",
+    "definition": "将变量数据去中心化（减去特征均值）后计算的余弦相似度，用以衡量变量间的线性相关程度。",
+    "formula": "",
+    "prerequisite": ["余弦相似度", "数据中心化"],
+    "applications": ["消除个体评分基准偏差（Bias）的用户行为偏好分析", "协同过滤推荐"],
+    "related_algorithms": ["协同过滤推荐算法"],
+    "next_topics": []
+  },
+  {
+    "topic": "Jaccard相似系数",
+    "subtopic": "集合类度量",
+    "definition": "量化离散二值集合元素重合度的方法，计算值为两集合交集元素数除以并集元素数。",
+    "formula": "J(A,B) = \\frac{|A \\cap B|}{|A \\cup B|}",
+    "prerequisite": ["集合交集", "集合并集"],
+    "applications": ["用户购买商品清单重合度计算", "计算机视觉中预测框与真实框重叠率(IoU)计算", "自然语言共有词汇比例对比"],
+    "related_algorithms": ["目标检测IoU"],
+    "next_topics": []
+  },
+  {
+    "topic": "交叉熵",
+    "subtopic": "概率分布度量",
+    "definition": "衡量预测概率分布与真实目标概率分布之间信息差异的非对称标量工具。",
+    "formula": "H(P,Q) = -\\sum_{i=1}^n p(x_i) \\ln q(x_i)",
+    "prerequisite": ["概率分布", "信息熵"],
+    "applications": ["驱动图像分类、语音识别和NLP模型的预测分布逼近真实分布", "深度网络分类任务的损失函数计算"],
+    "related_algorithms": ["分类神经网络"],
+    "next_topics": ["K-L散度"]
+  },
+  {
+    "topic": "K-L散度",
+    "subtopic": "概率分布度量",
+    "definition": "又称相对熵，用于度量两个概率分布之间信息差异的非对称非负标量，等价于交叉熵减去真实分布的信息熵。",
+    "formula": "D_{KL}(p||q) = \\sum_x p(x) \\ln \\frac{p(x)}{q(x)}",
+    "prerequisite": ["交叉熵", "Gibbs不等式"],
+    "applications": ["构造机器学习算法的目标函数", "概率拟合分布与真实分布之间误差的理论分析"],
+    "related_algorithms": [],
+    "next_topics": ["J-S散度"]
+  },
+  {
+    "topic": "J-S散度",
+    "subtopic": "概率分布度量",
+    "definition": "基于K-L散度构造的改进度量，引入均值分布做中介，实现对两个概率分布差异的对称性、非负性评估。",
+    "formula": "D_{JS}(p,q) = \\frac{1}{2} D_{KL}(p||m) + \\frac{1}{2} D_{KL}(q||m), m = \\frac{1}{2}(p+q)",
+    "prerequisite": ["K-L散度", "概率分布均值"],
+    "applications": ["对偶分布空间中概率差异的对称化定量计算"],
+    "related_algorithms": [],
+    "next_topics": []
+  }
+]

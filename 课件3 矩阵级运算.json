@@ -1,0 +1,72 @@
+[
+  {
+    "topic": "矩阵乘法",
+    "subtopic": "矩阵级运算",
+    "definition": "A ∈ ℝ^{m×n} 与 B ∈ ℝ^{n×p} 的乘积 C ∈ ℝ^{m×p}，第 (i,j) 元素为 A 第 i 行与 B 第 j 列的内积；满足结合律与分配律，不满足交换律",
+    "formula": "C = AB ∈ ℝ^{m×p}, c_ij = Σ_{k=1}^{n} a_ik · b_kj",
+    "prerequisite": ["矩阵", "向量内积", "线性映射"],
+    "applications": ["全连接层前向传播: a^{l+1} = σ(Wa^l + b)", "颜色空间线性变换 RGB→YCbCr", "特征混合与线性变换"],
+    "related_algorithms": ["Strassen算法", "BLAS", "AlphaTensor"],
+    "next_topics": ["矩阵的逆", "张量分解", "仿射变换", "多元线性回归"]
+  },
+  {
+    "topic": "仿射变换",
+    "subtopic": "矩阵乘法应用",
+    "definition": "线性变换（矩阵乘法）加偏置向量的复合，构成向量空间之间的一般线性映射",
+    "formula": "y = Mx + b",
+    "prerequisite": ["矩阵乘法", "向量加法"],
+    "applications": ["RGB→YCbCr颜色空间转换", "全连接层每层计算", "坐标系变换"],
+    "related_algorithms": ["全连接网络前向传播"],
+    "next_topics": ["矩阵的逆", "逆变换"]
+  },
+  {
+    "topic": "矩阵的逆",
+    "subtopic": "矩阵级运算",
+    "definition": "方阵 A ∈ ℝ^{n×n} 的逆矩阵 A⁻¹ 满足 AA⁻¹ = A⁻¹A = I；存在逆矩阵的充要条件为 A 满秩",
+    "formula": "AA^{-1} = A^{-1}A = I",
+    "prerequisite": ["矩阵乘法", "单位矩阵", "行列式", "满秩"],
+    "applications": ["仿射变换的逆变换: x = M⁻¹(y−b)", "线性方程组求解", "最小二乘解"],
+    "related_algorithms": ["高斯消元法", "LU分解", "伪逆（Moore-Penrose）"],
+    "next_topics": ["多元线性回归最小二乘解", "奇异值分解", "伪逆"]
+  },
+  {
+    "topic": "张量分解",
+    "subtopic": "矩阵乘法算法",
+    "definition": "将矩阵乘法的计算复杂度表示为3阶张量 T_{n,m,p} 的秩-1张量之和，秩越小对应乘法次数越少",
+    "formula": "T_{n,m,p} = Σ_r u_r ⊗ v_r ⊗ w_r",
+    "prerequisite": ["矩阵乘法", "张量", "秩"],
+    "applications": ["AlphaTensor: 用强化学习自动发现更低秩的矩阵乘法算法（DeepMind, 2022）"],
+    "related_algorithms": ["Strassen算法", "深度强化学习（DRL）", "AlphaTensor"],
+    "next_topics": ["张量运算", "强化学习在算法发现中的应用"]
+  },
+  {
+    "topic": "多元线性回归",
+    "subtopic": "矩阵乘法应用",
+    "definition": "用线性函数 h(x) = wᵀx + b 拟合样本 {(xᵢ, yᵢ)}，参数 w, b 通过最小化 MSE 损失确定",
+    "formula": "h(x) = w^T x + b,  L(w,b) = (1/2l) Σ_{i=1}^{l} (w^T x_i + b - y_i)^2",
+    "prerequisite": ["矩阵乘法", "向量内积", "线性函数", "MSE损失"],
+    "applications": ["回归预测", "作为深度网络线性层的单层特例"],
+    "related_algorithms": ["最小二乘法", "梯度下降"],
+    "next_topics": ["最小二乘解（正规方程）", "岭回归", "逻辑回归"]
+  },
+  {
+    "topic": "最小二乘解（正规方程）",
+    "subtopic": "多元线性回归",
+    "definition": "将样本特征堆叠为设计矩阵 X ∈ ℝ^{l×n}，MSE 损失的解析最优解由矩阵逆给出",
+    "formula": "X = (x_1^T; ...; x_l^T),  w = (X^T X)^{-1} X^T y",
+    "prerequisite": ["矩阵乘法", "矩阵的逆", "矩阵转置", "多元线性回归"],
+    "applications": ["线性回归参数的解析求解"],
+    "related_algorithms": ["LU分解", "QR分解", "SVD伪逆"],
+    "next_topics": ["伪逆", "岭回归（正则化）", "梯度下降替代方案"]
+  },
+  {
+    "topic": "均方误差损失（MSE）",
+    "subtopic": "损失函数",
+    "definition": "预测值与真实值差的平方均值，用于回归任务的训练目标",
+    "formula": "L(w,b) = (1/2l) Σ_{i=1}^{l} (h(x_i) - y_i)^2",
+    "prerequisite": ["线性回归预测函数", "向量内积"],
+    "applications": ["线性回归训练", "神经网络回归任务输出层"],
+    "related_algorithms": ["梯度下降", "最小二乘法"],
+    "next_topics": ["交叉熵损失", "Huber损失", "损失函数梯度推导"]
+  }
+]

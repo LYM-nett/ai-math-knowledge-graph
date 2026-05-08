@@ -1,0 +1,122 @@
+[
+  {
+    "topic": "向量范数",
+    "subtopic": "范数基本定义",
+    "definition": "映射 ‖·‖: ℝⁿ → ℝ 满足正定性、齐次性、三角不等式三条公理",
+    "formula": "(1) ‖x‖ ≥ 0, =0 ↔ x=0;  (2) ‖λx‖ = |λ|‖x‖;  (3) ‖x+y‖ ≤ ‖x‖+‖y‖",
+    "prerequisite": ["向量", "映射", "绝对值"],
+    "applications": ["度量向量大小", "正则化项构造", "损失函数设计"],
+    "related_algorithms": ["梯度下降", "正则化"],
+    "next_topics": ["常用向量范数", "Hölder范数", "向量范数等价性"]
+  },
+  {
+    "topic": "常用向量范数",
+    "subtopic": "向量范数",
+    "definition": "1-范数（曼哈顿）、2-范数（欧几里得）、∞-范数（切比雪夫）三种最常用实例",
+    "formula": "‖x‖₁ = Σ|xₖ|;  ‖x‖₂ = (Σ|xₖ|²)^{1/2};  ‖x‖_∞ = max|xₖ|",
+    "prerequisite": ["向量范数"],
+    "applications": ["L1正则化（稀疏解）", "L2正则化（权重衰减）", "∞-范数用于鲁棒优化"],
+    "related_algorithms": ["Lasso回归", "Ridge回归", "弹性网络"],
+    "next_topics": ["Hölder范数", "正则化", "0伪范数与稀疏性"]
+  },
+  {
+    "topic": "Hölder范数（p-范数）",
+    "subtopic": "向量范数",
+    "definition": "p ≥ 1 时构成合法向量范数的统一族；p→∞ 退化为 ∞-范数；p < 1 时不满足三角不等式，但仍有实用价值",
+    "formula": "‖x‖_p = (Σ_{k=1}^{n} |xᵢ|^p)^{1/p}, 1 ≤ p < ∞",
+    "prerequisite": ["向量范数", "常用向量范数"],
+    "applications": ["p < 1 伪范数用于稀疏恢复（徐宗本相关研究）"],
+    "related_algorithms": ["压缩感知", "稀疏信号恢复"],
+    "next_topics": ["Hölder不等式", "Cauchy-Schwarz不等式", "0伪范数"]
+  },
+  {
+    "topic": "内积与2-范数",
+    "subtopic": "向量范数",
+    "definition": "ℝⁿ 中内积 (x,y) = xᵀy 与 2-范数的关系：(x,x) = ‖x‖₂²",
+    "formula": "(x, y) = x^T y;  (x, x) = ‖x‖₂²",
+    "prerequisite": ["向量内积", "2-范数"],
+    "applications": ["余弦相似度", "注意力机制打分", "核方法"],
+    "related_algorithms": ["自注意力机制", "SVM"],
+    "next_topics": ["Cauchy-Schwarz不等式", "Hölder不等式"]
+  },
+  {
+    "topic": "Cauchy-Schwarz不等式",
+    "subtopic": "内积与范数",
+    "definition": "内积与2-范数满足的基本不等式，是Hölder不等式 p=q=2 时的特例",
+    "formula": "|(x, y)| ≤ ‖x‖₂ · ‖y‖₂",
+    "prerequisite": ["向量内积", "2-范数", "Hölder范数"],
+    "applications": ["余弦相似度有界性证明", "注意力机制缩放因子"],
+    "related_algorithms": ["缩放点积注意力（Scaled Dot-Product Attention）"],
+    "next_topics": ["Hölder不等式"]
+  },
+  {
+    "topic": "Hölder不等式",
+    "subtopic": "内积与范数",
+    "definition": "共轭指数 p, q（1/p + 1/q = 1）下内积的上界",
+    "formula": "|(x, y)| ≤ ‖x‖_p · ‖y‖_q,  p,q > 1,  1/p + 1/q = 1",
+    "prerequisite": ["Hölder范数", "向量内积"],
+    "applications": ["p-范数正则化理论分析"],
+    "related_algorithms": ["对偶范数理论"],
+    "next_topics": ["对偶范数", "凸优化"]
+  },
+  {
+    "topic": "加权范数（椭圆范数）",
+    "subtopic": "向量范数",
+    "definition": "由正定矩阵 A 诱导的向量范数，单位球为椭球体",
+    "formula": "‖x‖_A = (x^T A x)^{1/2},  A 正定",
+    "prerequisite": ["向量范数", "正定矩阵", "2-范数"],
+    "applications": ["马氏距离", "二次型优化中的距离度量"],
+    "related_algorithms": ["自然梯度下降", "马氏距离分类器"],
+    "next_topics": ["马氏距离", "二次型"]
+  },
+  {
+    "topic": "向量范数等价性",
+    "subtopic": "向量范数",
+    "definition": "ℝⁿ 上任意两个向量范数等价（存在正常数 c₁, c₂ 夹逼）；无穷维空间中不成立",
+    "formula": "c₁‖x‖^{(2)} ≤ ‖x‖^{(1)} ≤ c₂‖x‖^{(2)}, ∀x ∈ ℝⁿ",
+    "prerequisite": ["向量范数", "有限维向量空间"],
+    "applications": ["有限维空间中范数选取不影响收敛性"],
+    "related_algorithms": [],
+    "next_topics": ["矩阵范数", "Banach空间"]
+  },
+  {
+    "topic": "矩阵范数",
+    "subtopic": "范数基本定义",
+    "definition": "满足正定性、齐次性、三角不等式的矩阵到标量映射；方阵情形额外要求相容性：‖AB‖ ≤ ‖A‖‖B‖",
+    "formula": "‖AB‖ ≤ ‖A‖ · ‖B‖  （相容性）",
+    "prerequisite": ["向量范数", "矩阵", "矩阵乘法"],
+    "applications": ["矩阵扰动分析", "模型权重度量", "低秩正则化"],
+    "related_algorithms": ["矩阵分解", "鲁棒PCA"],
+    "next_topics": ["常用矩阵范数", "诱导范数", "0伪范数"]
+  },
+  {
+    "topic": "Frobenius范数",
+    "subtopic": "矩阵范数",
+    "definition": "矩阵所有元素平方和的平方根（m₂-范数），具有正交不变性：‖A‖_F = ‖UᵀAV‖_F",
+    "formula": "‖A‖_F = (Σᵢ Σⱼ |aᵢⱼ|²)^{1/2}",
+    "prerequisite": ["矩阵范数", "矩阵", "正交矩阵"],
+    "applications": ["矩阵近似误差度量", "L2正则化权重矩阵", "低秩近似误差"],
+    "related_algorithms": ["SVD低秩近似", "权重衰减", "Eckart-Young定理"],
+    "next_topics": ["诱导范数（谱范数）", "低秩正则化", "奇异值分解"]
+  },
+  {
+    "topic": "诱导范数（矩阵p-范数）",
+    "subtopic": "矩阵范数",
+    "definition": "由向量 p-范数诱导：‖A‖ = max_{‖x‖=1} ‖Ax‖，几何意义为矩阵线性变换对向量长度的最大拉伸倍数",
+    "formula": "‖A‖_p = max_{x≠0} ‖Ax‖_p / ‖x‖_p;  ‖A‖₁=最大列绝对值和;  ‖A‖₂=√λ₁(AᵀA)（谱范数）;  ‖A‖_∞=最大行绝对值和",
+    "prerequisite": ["矩阵范数", "向量范数", "特征值"],
+    "applications": ["谱范数约束（GAN训练稳定性）", "矩阵条件数计算"],
+    "related_algorithms": ["谱归一化（Spectral Normalization）", "幂迭代法"],
+    "next_topics": ["奇异值", "条件数", "谱归一化GAN"]
+  },
+  {
+    "topic": "0伪范数与稀疏性",
+    "subtopic": "矩阵范数",
+    "definition": "‖A‖₀ 定义为矩阵 A 中非零元素的个数，满足正定性和齐次性但不满足三角不等式，故称伪范数",
+    "formula": "‖A‖₀ = #{(i,j) : aᵢⱼ ≠ 0}",
+    "prerequisite": ["矩阵范数", "稀疏矩阵"],
+    "applications": ["稀疏信号恢复", "特征选择", "社交网络矩阵", "基因表达分析"],
+    "related_algorithms": ["压缩感知", "Lasso（L1松弛替代L0）", "匹配追踪算法"],
+    "next_topics": ["L1范数作为L0的凸松弛", "压缩感知", "稀疏学习"]
+  }
+]

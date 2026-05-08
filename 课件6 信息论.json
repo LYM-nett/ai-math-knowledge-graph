@@ -1,0 +1,62 @@
+[
+  {
+    "topic": "自信息量",
+    "subtopic": "信息论基础",
+    "definition": "随机变量取值 x 时携带的信息量，等于发生概率的负对数；概率越小，信息量越大；独立事件的信息量可加",
+    "formula": "h(x) = -ln p(x)   （单位：nat；以2为底时单位为 bit）",
+    "prerequisite": ["概率论", "对数函数", "随机变量"],
+    "applications": ["编码长度设计", "信源编码"],
+    "related_algorithms": ["Huffman编码", "算术编码"],
+    "next_topics": ["香农熵（离散）", "微分熵（连续）"]
+  },
+  {
+    "topic": "香农熵（离散熵）",
+    "subtopic": "熵",
+    "definition": "离散随机变量 X 的自信息量关于其概率分布的期望，度量概率分布整体的不确定性",
+    "formula": "H(p) = E_p[-ln p(X)] = -Σᵢ pᵢ ln pᵢ",
+    "prerequisite": ["自信息量", "离散概率分布", "数学期望"],
+    "applications": ["决策树特征选择（信息增益）", "分类损失函数构造", "数据压缩极限"],
+    "related_algorithms": ["ID3/C4.5决策树", "信源编码定理"],
+    "next_topics": ["熵的极值性质", "联合熵", "条件熵", "KL散度", "交叉熵损失"]
+  },
+  {
+    "topic": "微分熵（连续熵）",
+    "subtopic": "熵",
+    "definition": "连续随机变量 X 的自信息量关于其概率密度函数的期望积分；可为负值，不具有离散熵的部分性质",
+    "formula": "H(p) = -∫_{-∞}^{+∞} p(x) ln p(x) dx",
+    "prerequisite": ["自信息量", "概率密度函数", "积分", "数学期望"],
+    "applications": ["连续分布不确定性度量", "变分自编码器（VAE）"],
+    "related_algorithms": ["最大熵原理", "变分推断"],
+    "next_topics": ["正态分布的微分熵", "熵的极值性质（连续）", "联合熵"]
+  },
+  {
+    "topic": "熵的极值性质（离散）",
+    "subtopic": "香农熵（离散熵）",
+    "definition": "取 n 个值的离散随机变量中，均匀分布时熵最大（= ln n）；退化为确定性变量时熵最小（= 0）",
+    "formula": "H(p) ≤ ln n,  等号当且仅当 p₁=p₂=...=pₙ=1/n",
+    "prerequisite": ["香农熵（离散熵）", "Lagrange乘数法", "约束优化"],
+    "applications": ["最大熵模型", "特征选择中优先选信息增益最大的特征"],
+    "related_algorithms": ["最大熵分类器", "Lagrange乘数法"],
+    "next_topics": ["最大熵原理", "熵的极值性质（连续）"]
+  },
+  {
+    "topic": "熵的极值性质（连续）",
+    "subtopic": "微分熵（连续熵）",
+    "definition": "在均值 μ 和方差 σ² 固定的连续分布中，正态分布 N(μ,σ²) 的微分熵最大；证明用变分法",
+    "formula": "H(N(μ,σ²)) = ln(√(2πe)σ) = ln(√(2π)σ) + 1/2",
+    "prerequisite": ["微分熵（连续熵）", "正态分布", "变分法", "约束优化"],
+    "applications": ["正态分布作为最大熵分布的理论依据", "VAE中使用高斯先验"],
+    "related_algorithms": ["变分自编码器（VAE）", "最大熵原理"],
+    "next_topics": ["多维正态分布的熵", "KL散度"]
+  },
+  {
+    "topic": "联合熵",
+    "subtopic": "熵",
+    "definition": "多维随机变量 (X,Y) 的联合分布的熵，度量多个随机变量整体的不确定性；X,Y 独立时 H(X,Y)=H(X)+H(Y)",
+    "formula": "离散: H(X,Y) = -Σₓ Σᵧ p(x,y) ln p(x,y);  连续: H(X,Y) = -∫∫ p(x,y) ln p(x,y) dxdy;  独立时: H(X,Y)=H(X)+H(Y)",
+    "prerequisite": ["香农熵（离散熵）", "微分熵（连续熵）", "联合概率分布", "随机变量独立性"],
+    "applications": ["多变量信息度量", "多维正态分布熵: (n/2)ln(2π) + (1/2)ln|Σ| + n/2"],
+    "related_algorithms": ["互信息", "条件熵"],
+    "next_topics": ["条件熵", "互信息", "KL散度", "交叉熵损失"]
+  }
+]

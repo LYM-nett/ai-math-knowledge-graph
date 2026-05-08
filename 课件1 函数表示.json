@@ -1,0 +1,102 @@
+[
+  {
+    "topic": "函数",
+    "subtopic": "基本定义与深层意义",
+    "definition": "一种映射 f: X → Y，把定义域 X 中的每个元素唯一对应到值域 Y 中。寻找能表示离散采样信号的连续函数，天然可以刻画信号的连续变化，并能方便利用微积分工具分析变化率。",
+    "formula": "f: X → Y",
+    "prerequisite": ["集合", "映射", "定义域", "值域"],
+    "applications": ["AI任务建模为输入-输出映射（如人脸识别、机器翻译、自动驾驶）", "作为连接数据与智能的桥梁，突破人类经验的局限性", "提供泛化能力的数学保障", "平衡解释性与可扩展性，作为跨学科的统一语言"],
+    "related_algorithms": [],
+    "next_topics": ["损失函数与优化函数", "梯度", "基函数线性组合", "函数非线性复合"]
+  },
+  {
+    "topic": "损失函数与优化函数",
+    "subtopic": "函数表示",
+    "definition": "驱动AI“学习”的动力，AI的训练过程本质是通过调整函数参数来最小化预测误差，这一过程直接依赖这两类关键函数。",
+    "formula": "",
+    "prerequisite": ["函数"],
+    "applications": ["衡量预测误差", "驱动AI模型的训练过程与参数调整"],
+    "related_algorithms": ["梯度下降", "反向传播"],
+    "next_topics": ["梯度"]
+  },
+  {
+    "topic": "梯度",
+    "subtopic": "多元函数微分",
+    "definition": "可微多元函数 f 对每个分量的偏导数构成的列向量，是模型训练与优化的“导航仪”。",
+    "formula": "∇f = (∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ)ᵀ",
+    "prerequisite": ["偏导数", "多元函数", "向量"],
+    "applications": ["神经网络参数更新", "损失函数最小化", "连接“函数”与“智能”的关键桥梁"],
+    "related_algorithms": ["梯度下降", "反向传播算法"],
+    "next_topics": ["链式法则"]
+  },
+  {
+    "topic": "基函数的线性组合",
+    "subtopic": "函数逼近方法",
+    "definition": "预先给定一组基函数 {φₖ}，通过它们的线性组合构造逼近复杂目标函数的方法。",
+    "formula": "f(t) = Σₖ₌₀ⁿ aₖφₖ(t)",
+    "prerequisite": ["函数", "线性组合", "系数求解"],
+    "applications": ["连续信号建模", "周期性数据拟合"],
+    "related_algorithms": ["最小二乘法"],
+    "next_topics": ["多项式基函数", "三角基函数", "Weierstrass逼近定理"]
+  },
+  {
+    "topic": "多项式基函数",
+    "subtopic": "基函数线性组合",
+    "definition": "取基函数 {1, t, t², ..., tⁿ}，其线性组合便构成多项式函数。",
+    "formula": "Pₙ(t) = Σₖ₌₀ⁿ aₖtᵏ",
+    "prerequisite": ["基函数的线性组合", "多项式"],
+    "applications": ["连续函数逼近"],
+    "related_algorithms": ["多项式回归", "拉格朗日插值"],
+    "next_topics": ["Weierstrass逼近定理"]
+  },
+  {
+    "topic": "Weierstrass逼近定理",
+    "subtopic": "逼近理论",
+    "definition": "闭区间 [a,b] 上的连续函数，对任意 ε>0，存在一个实系数多项式 P(x) 使全局误差小于 ε。",
+    "formula": "|f(x) - P(x)| < ε, ∀x ∈ [a,b]",
+    "prerequisite": ["连续函数", "闭区间", "多项式基函数"],
+    "applications": ["多项式逼近能力的理论保证"],
+    "related_algorithms": ["Bernstein多项式", "Chebyshev逼近"],
+    "next_topics": ["通用逼近定理"]
+  },
+  {
+    "topic": "三角基函数",
+    "subtopic": "基函数线性组合",
+    "definition": "以 cos(2πkt/T) 和 sin(2πkt/T) 为基函数的线性组合，即 Fourier 级数的截断形式。",
+    "formula": "f(t) = a₀/2 + Σₖ₌₁ⁿ (aₖcos(2πkt/T) + bₖsin(2πkt/T))",
+    "prerequisite": ["基函数的线性组合", "三角函数", "周期函数"],
+    "applications": ["有效刻画信号中的周期性结构", "音频信号处理", "频域分析"],
+    "related_algorithms": ["傅里叶变换", "DFT", "FFT"],
+    "next_topics": ["傅里叶分析", "信号处理"]
+  },
+  {
+    "topic": "函数的非线性复合",
+    "subtopic": "函数逼近方法",
+    "definition": "不预设固定基函数，而是通过多个简单函数的非线性复合来构造复杂函数逼近目标。",
+    "formula": "f = fₙ ∘ fₙ₋₁ ∘ ... ∘ f₁",
+    "prerequisite": ["函数复合", "线性变换", "非线性激活函数"],
+    "applications": ["深度神经网络", "特征层次提取"],
+    "related_algorithms": ["前向传播", "反向传播"],
+    "next_topics": ["全连接网络", "通用逼近定理"]
+  },
+  {
+    "topic": "全连接网络",
+    "subtopic": "函数的非线性复合",
+    "definition": "由多个简单形式的线性层与逐元素非线性激活函数交替复合构成的参数化函数表示。",
+    "formula": "f(x) = f₂ ∘ f₁(x) = σ(W₂σ(W₁x + b₁) + b₂)",
+    "prerequisite": ["矩阵乘法", "仿射变换", "激活函数", "函数复合"],
+    "applications": ["分类", "回归", "高度复杂的非线性映射关系表示"],
+    "related_algorithms": ["反向传播", "梯度下降"],
+    "next_topics": ["通用逼近定理", "激活函数选择", "正则化"]
+  },
+  {
+    "topic": "通用逼近定理",
+    "subtopic": "逼近理论",
+    "definition": "对紧集 K 上的连续函数 g，含至少一个隐藏层并带有适当非线性激活函数的全连接网络可以任意精度逼近 g。",
+    "formula": "sup_{x∈K} ‖f_θ(x) - g(x)‖ < ε",
+    "prerequisite": ["全连接网络", "紧集", "连续函数", "Weierstrass逼近定理"],
+    "applications": ["深度全连接网络强大逼近能力的理论保证"],
+    "related_algorithms": ["深度学习", "函数拟合"],
+    "next_topics": ["深度 vs 宽度权衡", "过拟合与泛化", "网络结构设计"]
+  }
+]
